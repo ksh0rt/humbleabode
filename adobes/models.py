@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+class Abode(models.Model):
+    price = models.IntegerField()
+    address = models.CharField(max_length=255)
+    bedrooms = models.IntegerField()
+    bathrooms = models.IntegerField()
+    SqFoot = models.IntegerField()
+    image = models.ImageField(upload_to='humbleabode/images/')
