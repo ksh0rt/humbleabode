@@ -11,6 +11,7 @@ class Abode(models.Model):
     zip_code = models.CharField(max_length=5) #Zipcodes are 5 digits long
     bedrooms = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
     bathrooms = models.DecimalField(max_digits=3, decimal_places=1, validators=[MinValueValidator(Decimal('0.5'))])
-    SqFoot = models.PositiveIntegerField(default=100, validators=[MinValueValidator(1)])
+    SqFoot = models.PositiveIntegerField(verbose_name='Square Feet',default=100, validators=[MinValueValidator(1)])
     image = models.ImageField(upload_to='humbleabode/images/', null=True, blank=True)
+    is_sold = models.BooleanField(default=False, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
