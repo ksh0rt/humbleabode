@@ -8,6 +8,9 @@ from django.contrib.auth import authenticate, login
 def home(request):
     return render(request, 'abodes/home.html')
 
+def myabodes(request):
+    return render(request, 'abodes/myabodes.html')
+
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('home')
@@ -30,3 +33,18 @@ class AddAbode(generic.CreateView):
         form.instance.user = self.request.user
         super(AddAbode, self).form_valid(form)
         return redirect('home')
+
+class DetailAbode(generic.DetailView):
+    model = Abode
+    template_name = 'abodes/detail_abode.html'
+
+class UpdateAbode(generic.UpdateView):
+    model = Abode
+    template_name = 'abodes/update_abode.html'
+    fields = ['price','street_address','city','state','zip_code','bedrooms','bathrooms','SqFoot','image']
+    success_url = reverse_lazy('home')
+
+class DeleteAbode(generic.DeleteView):
+    model = Abode
+    template_name = 'abodes/delete_abode.html'
+    success_url = reverse_lazy('home')

@@ -1,0 +1,22 @@
+{% extends 'abodes/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h2 style="padding-right: 5px;">{{ abode.street_address }}</h2> <h2>•</h2>
+    <h2 style="padding-left: 5px; padding-right: 5px;">{{ abode.city }},</h2><h2>{{ abode.state }}</h2>
+    <h2 style="padding-left: 5px; padding-right: 5px;">{{ abode.zip_code }}</h2>
+    <h2 style="padding-left: 5px;" >${{ abode.price }}</h2>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-6">
+      <img src="{{ abode.image.url }}" class="img-fluid mb-2">
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <p>Bedrooms: {{ abode.bedrooms }}</p>
+      <p>Bathrooms: {{ abode.bathrooms }}</p>
+      <p>Square feet: {{ abode.SqFoot }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

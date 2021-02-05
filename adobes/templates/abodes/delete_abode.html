@@ -1,0 +1,11 @@
+{% extends 'abodes/base.html' %}
+{% block content %}
+<div class="container text-center" id="container">
+    <h1>Are you sure you want to delete this Abode?</h1>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <a href="{% url 'detail_abode' abode.id %}" class="btn btn-primary">Back to Abode</a>
+</div>
+{% endblock %}
