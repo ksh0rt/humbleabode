@@ -24,10 +24,10 @@ class SignUp(generic.CreateView):
         login(self.request, user)
         return view
 
-def AddAbode(request, pk):
+def AddAbode(request):
     address_form = AddressForm
     abode_form = AbodeForm
-    return render(request, 'abodes/add_abode.html')
+    return render(request, 'abodes/add_abode.html', {'AddressForm':address_form,'AbodeForm':abode_form})
 
 class DetailAbode(generic.DetailView):
     model = Abode

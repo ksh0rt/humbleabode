@@ -7,37 +7,37 @@
       {% csrf_token %}
       <div class="row" style="padding-top: 20px; padding-right: 10px;">
         <div class="col-lg-8 mr-auto ml-auto"">
-          {{ form.price.label }} {{ form.price }}
+          {{ AbodeForm.price.label }} {{ AbodeForm.price }}
         </div>
       </div>
       <div class="row" style="padding-top: 20px; padding-right: 10px;">
         <div class="col-lg-8 mr-auto ml-auto"">
-          {{ form.street_address.label }} {{ form.street_address }}
+          {{ AddressForm.street_address.label }} {{ AddressForm.street_address }}
         </div>
       </div>
       <div class="row" style="padding-top: 20px; padding-right: 10px;">
         <div class="col-lg-8 mr-auto ml-auto"">
-          {{ form.city.label }} {{ form.city }}
+          {{ AddressForm.city.label }} {{ AddressForm.city }}
         </div>
       </div>
       <div class="row" style="padding-top: 20px; padding-right: 10px;">
         <div class="col-lg-8 mr-auto ml-auto"">
-          {{ form.state.label }} {{ form.state }}
+          {{ AddressForm.state.label }} {{ AddressForm.state }}
         </div>
       </div>
       <div class="row" style="padding-top: 20px; padding-right: 10px;">
         <div class="col-lg-8 mr-auto ml-auto"">
-          {{ form.zip_code.label }} {{ form.zip_code }}
+          {{ AddressForm.zip_code.label }} {{ AddressForm.zip_code }}
         </div>
       </div>
       <div class="row" style="padding-top: 20px;">
         <div class="col-lg-8 mr-auto ml-auto"">
-          {{ form.bedrooms.label }} {{ form.bedrooms }}
+          {{ AbodeForm.bedrooms.label }} {{ AbodeForm.bedrooms }}
         </div>
       </div>
       <div class="row" style="padding-top: 20px;">
         <div class="col-lg-8 mr-auto ml-auto"">
-          {{ form.bathrooms.label }}
+          {{ AbodeForm.bathrooms.label }}
           <select name="bathrooms">
             <option value="0.5">0.5</option>
             <option value="1">1</option>
@@ -55,12 +55,12 @@
       </div>
       <div class="row" style="padding-top: 20px;">
         <div class="col-lg-8 mr-auto ml-auto"">
-          {{ form.SqFoot.label }} {{ form.SqFoot }}
+          {{ AbodeForm.SqFoot.label }} {{ AbodeForm.SqFoot }}
         </div>
       </div>
       <div class="row" style="padding-top: 20px;">
         <div class="col-lg-8 mr-auto ml-auto"">
-          {{ form.image.label }} {{ form.image }}
+          {{ AbodeForm.image.label }} {{ AbodeForm.image }}
         </div>
       </div>
       <div class="row" style="padding-top: 20px;">
