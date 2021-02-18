@@ -7,4 +7,4 @@ class AddressForm(forms.ModelForm):
 
 class AbodeForm(forms.ModelForm):
     model = Abode
-    fields = ['price','bedrooms','bathrooms','SqFoot','image','is_sold',]
+    fields = ['price','bedrooms','bathrooms','SqFoot','image','is_sold']
