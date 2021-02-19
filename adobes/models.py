@@ -4,6 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from decimal import *
 
 class Address(models.Model):
+    address_id = models.AutoField(primary_key=True)
     street_address = models.CharField(max_length=255)
     city = models.CharField(max_length=20) #Longest city name in the US is 17 characters
     state = models.CharField(max_length=2) #Two for state abbreviations
