@@ -3,9 +3,9 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <h2 style="padding-right: 5px;">{{ abode.street_address }}</h2> <h2>•</h2>
-    <h2 style="padding-left: 5px; padding-right: 5px;">{{ abode.city }},</h2><h2>{{ abode.state }}</h2>
-    <h2 style="padding-left: 5px; padding-right: 5px;">{{ abode.zip_code }}</h2>
+    <h2 style="padding-right: 5px;">{{ abode.address.street_address }}</h2> <h2>•</h2>
+    <h2 style="padding-left: 5px; padding-right: 5px;">{{ abode.address.city }},</h2><h2>{{ abode.address.state }}</h2>
+    <h2 style="padding-left: 5px; padding-right: 5px;">{{ abode.address.zip_code }}</h2>
     <h2 style="padding-left: 5px;" >${{ abode.price }}</h2>
   </div>
   <div class="row">

@@ -17,7 +17,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     path('addabode', views.AddAbode, name='add_abode'),
-    path('abode/<int:pk>', views.DetailAbode.as_view(), name='detail_abode'),
+    path('abode/<int:pk>', views.DetailAbode, name='detail_abode'),
     path('abode/<int:pk>/update', views.UpdateAbode.as_view(), name='update_abode'),
     path('abode/<int:pk>/delete', views.DeleteAbode.as_view(), name='delete_abode'),
 ]

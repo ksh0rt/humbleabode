@@ -5,7 +5,6 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Abode, Address
 from django.contrib.auth import authenticate, login
 from .forms import AddressForm, AbodeForm
-from django.db import transaction
 
 
 def home(request):
@@ -38,7 +37,7 @@ def AddAbode(request):
     abode_form = AbodeForm()
     if request.method == 'POST':
         filled_address_form = AddressForm(request.POST, instance=Address())
-        filled_abode_form = AbodeForm(request.POST, instance=Abode())
+        filled_abode_form = AbodeForm(request.POST, request.FILES, instance=Abode())
         if filled_address_form.is_valid() and filled_abode_form.is_valid():
             new_address = filled_address_form.save()
             new_abode = Abode()
@@ -53,13 +52,13 @@ def AddAbode(request):
             new_abode.user = current_user
             new_abode.address = new_address
             new_abode.save()
-            # transaction.commit()
             return redirect('home')
     return render(request, 'abodes/add_abode.html', {'AddressForm':address_form,'AbodeForm':abode_form})
 
-class DetailAbode(generic.DetailView):
-    model = Abode
-    template_name = 'abodes/detail_abode.html'
+def DetailAbode(request, pk):
+    abode = Abode.objects.get(pk=pk)
+    return render(request, 'abodes/detail_abode.html', {'abode':abode})
+
 
 class UpdateAbode(generic.UpdateView):
     model = Abode
