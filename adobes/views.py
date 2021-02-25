@@ -60,12 +60,29 @@ def DetailAbode(request, pk):
     return render(request, 'abodes/detail_abode.html', {'abode':abode})
 
 def UpdateAbode(request, pk):
-    address_form = AddressForm()
-    abode_form = AbodeForm()
     current_abode = Abode.objects.get(pk=pk)
+    current_address = current_abode.address
+    address_form = AddressForm(instance=current_address)
+    abode_form = AbodeForm(instance=current_abode)
     if request.method == 'POST':
-        abode = Abode.objects.get(pk=pk)
-        return redirect('home')
+        filled_address_form = AddressForm(request.POST, instance=Address())
+        filled_abode_form = AbodeForm(request.POST, request.FILES, instance=Abode())
+        if filled_address_form.is_valid() and filled_abode_form.is_valid():
+            current_address.street_address = filled_address_form.cleaned_data['street_address']
+            current_address.city = filled_address_form.cleaned_data['city']
+            current_address.state = filled_address_form.cleaned_data['state']
+            current_address.zip_code = filled_address_form.cleaned_data['zip_code']
+            current_address.save()
+            current_abode.price = filled_abode_form.cleaned_data['price']
+            current_abode.bedrooms = filled_abode_form.cleaned_data['bedrooms']
+            current_abode.bathrooms = filled_abode_form.cleaned_data['bathrooms']
+            current_abode.SqFoot = filled_abode_form.cleaned_data['SqFoot']
+            current_abode.image = filled_abode_form.cleaned_data['image']
+            current_abode.is_sold = filled_abode_form.cleaned_data['is_sold']
+            current_abode.image = filled_abode_form.cleaned_data['image']
+            current_abode.address = current_address
+            current_abode.save()
+            return redirect('home')
     else:
         return render(request, 'abodes/update_abode.html', {'abode':current_abode, 'AddressForm':address_form,'AbodeForm':abode_form})
 
