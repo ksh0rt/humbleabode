@@ -59,12 +59,23 @@ def DetailAbode(request, pk):
     abode = Abode.objects.get(pk=pk)
     return render(request, 'abodes/detail_abode.html', {'abode':abode})
 
+def UpdateAbode(request, pk):
+    address_form = AddressForm()
+    abode_form = AbodeForm()
+    current_abode = Abode.objects.get(pk=pk)
+    if request.method == 'POST':
+        abode = Abode.objects.get(pk=pk)
+        return redirect('home')
+    else:
+        return render(request, 'abodes/update_abode.html', {'abode':current_abode, 'AddressForm':address_form,'AbodeForm':abode_form})
 
-class UpdateAbode(generic.UpdateView):
-    model = Abode
-    template_name = 'abodes/update_abode.html'
-    fields = ['price','street_address','city','state','zip_code','bedrooms','bathrooms','SqFoot','image']
-    success_url = reverse_lazy('home')
+
+
+# class UpdateAbode(generic.UpdateView):
+#     model = Abode
+#     template_name = 'abodes/update_abode.html'
+#     fields = ['price','address.street_address', 'address.city', 'address.state', 'address.zip_code','bedrooms','bathrooms','SqFoot','image']
+#     success_url = reverse_lazy('home')
 
 class DeleteAbode(generic.DeleteView):
     model = Abode

@@ -18,7 +18,7 @@ urlpatterns = [
 
     path('addabode', views.AddAbode, name='add_abode'),
     path('abode/<int:pk>', views.DetailAbode, name='detail_abode'),
-    path('abode/<int:pk>/update', views.UpdateAbode.as_view(), name='update_abode'),
+    path('abode/<int:pk>/update', views.UpdateAbode, name='update_abode'),
     path('abode/<int:pk>/delete', views.DeleteAbode.as_view(), name='delete_abode'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
