@@ -10,8 +10,10 @@ from .forms import AddressForm, AbodeForm
 def home(request):
     return render(request, 'abodes/home.html')
 
-def myabodes(request):
-    return render(request, 'abodes/myabodes.html')
+def MyAbodes(request):
+    current_user = request.user
+    abodes = Abode.objects.get(user__exact=current_user)
+    return render(request, 'abodes/myabodes.html',{'abodes':abodes})
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
@@ -85,14 +87,6 @@ def UpdateAbode(request, pk):
             return redirect('home')
     else:
         return render(request, 'abodes/update_abode.html', {'abode':current_abode, 'AddressForm':address_form,'AbodeForm':abode_form})
-
-
-
-# class UpdateAbode(generic.UpdateView):
-#     model = Abode
-#     template_name = 'abodes/update_abode.html'
-#     fields = ['price','address.street_address', 'address.city', 'address.state', 'address.zip_code','bedrooms','bathrooms','SqFoot','image']
-#     success_url = reverse_lazy('home')
 
 class DeleteAbode(generic.DeleteView):
     model = Abode
