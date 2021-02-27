@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
-from .models import Abode, Address
+from .models import Abode, Address, Interest
 from django.contrib.auth import authenticate, login
 from .forms import AddressForm, AbodeForm
 
@@ -60,6 +60,13 @@ def AddAbode(request):
 def DetailAbode(request, pk):
     abode = Abode.objects.get(pk=pk)
     return render(request, 'abodes/detail_abode.html', {'abode':abode})
+
+def Interested(request, pk):
+    new_interest = Interest()
+    new_interest.user = request.user
+    new_interest.abode = Abode.objects.get(pk=pk)
+    new_interest.save()
+    return redirect('home')
 
 def UpdateAbode(request, pk):
     current_abode = Abode.objects.get(pk=pk)

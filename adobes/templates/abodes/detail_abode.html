@@ -16,6 +16,7 @@
       <p>Bedrooms: {{ abode.bedrooms }}</p>
       <p>Bathrooms: {{ abode.bathrooms }}</p>
       <p>Square feet: {{ abode.SqFoot }}</p>
+      <a href="{% url 'interested' abode.id %}" class="btn btn-success">Interested</a>
     </div>
   </div>
 </div>
