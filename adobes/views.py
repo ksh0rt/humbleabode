@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
+import pdb
 from django.contrib.auth.forms import UserCreationForm
 from .models import Abode, Address, Interest
 from django.contrib.auth import authenticate, login
@@ -62,9 +63,15 @@ def DetailAbode(request, pk):
     return render(request, 'abodes/detail_abode.html', {'abode':abode})
 
 def Interested(request, pk):
+    user = request.user
+    abode = Abode.objects.get(pk=pk)
+    interests = Interest.objects.filter(user=user)
+    for i in interests:
+        if i.user == request.user and i.abode == abode:
+            return render(request, 'abodes/detail_abode.html', {'abode':abode, 'error':'You have already saved this abode'})
     new_interest = Interest()
     new_interest.user = request.user
-    new_interest.abode = Abode.objects.get(pk=pk)
+    new_interest.abode = abode
     new_interest.save()
     return redirect('home')
 
